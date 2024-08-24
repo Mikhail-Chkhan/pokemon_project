@@ -1,15 +1,29 @@
 import ResponseModelAllPokemon from "../modeles/ResponseModelAllPokemon";
-import {urls} from "../constants/urls";
+import {baseUrl, urls} from "../constants/urls";
+import axios, {AxiosResponse} from "axios";
+import IPokemon from "../modeles/IPokemon";
+
+
+let axiosInstance = axios.create({
+    baseURL: baseUrl
+})
+
+interface IParams {
+    offset?:string,
+    limit?:string
+}
 
 export const pokemonService = {
-    getAllPokemon: async (): Promise<ResponseModelAllPokemon> => {
-        const url = urls.AllPokemon.base;
-        const response = await fetch(url, {
-            method: 'GET',
-            headers: {
-                accept: 'application/json',
-            }
-        }).then(response => response.json());
-        return response;
+    getAllPokemon: async (params?: URLSearchParams): Promise<AxiosResponse<ResponseModelAllPokemon>> => {
+        const url = urls.pokemonUrl.all;
+        const response: AxiosResponse<ResponseModelAllPokemon> = await axiosInstance.get(url,{params:params})
+        console.log(response)
+        return response
+    },
+    getById: async (id:string):Promise<AxiosResponse<IPokemon>> => {
+        const url = urls.pokemonUrl.byId(id)
+        const response:AxiosResponse<IPokemon> = await axiosInstance.get(url)
+        console.log(response)
+        return response
     }
-    }
+}

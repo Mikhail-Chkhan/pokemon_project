@@ -1,0 +1,39 @@
+.contentBox {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.mainImg {
+    width: 200px;
+    padding-bottom: 30px;
+
+}
+.pokemonLink {
+    text-decoration: none;
+    cursor: pointer;
+
+
+}
+
+.divCard {
+    padding: 10px 5px;
+    width: 250px;
+    border-radius: 5px;
+background-color: #ff9c67;
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    position: relative;
+
+}
+
+.divCard>h3 {
+    position: absolute;
+    bottom: -5px;
+    color: white;
+    font-size: 30px;
+}

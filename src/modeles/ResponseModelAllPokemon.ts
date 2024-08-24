@@ -1,4 +1,4 @@
-import IPokemonResault from "./IPokemonResault";
+import IPokemonResault from "./IPokemonResult";
 
 export default interface ResponseModelAllPokemon {
     count: number;
