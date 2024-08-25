@@ -1,0 +1,28 @@
+.mainBox {
+    width: 100vw;
+    height: 100vh;
+
+
+}
+/*.searchBox {*/
+/*    width: 100vw;*/
+/*    height: 5vh;*/
+
+/*}*/
+.pokemonBox {
+    width: 100vw;
+    height: 90vh;
+    overflow: auto;
+    /*display: flex;*/
+    /*align-items: center;*/
+    /*justify-content: center;*/
+
+
+}
+.paginatorBox, .searchBox {
+    width: 100vw;
+    height: 5vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

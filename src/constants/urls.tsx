@@ -11,6 +11,10 @@ export const urls = {
     imageUrl: {
         mainImgById: (id: string): string => baseImgUrl + 'PokeAPI/sprites/master/sprites/pokemon/other/dream-world/' + id + '.svg',
         secondImgById: (id: string): string => baseImgUrl + 'PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/' + id + '.png'
+    },
+    typeUrl : {
+        all: baseUrl + 'type',
+        byId: (id: string): string => baseUrl + 'type/' + id,
     }
 }
 // genres: {

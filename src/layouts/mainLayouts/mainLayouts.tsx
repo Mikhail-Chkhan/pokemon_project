@@ -6,7 +6,7 @@ import styles from "./mainLayouts.module.css"
 const MainLayouts = () => {
     return (
         <div>
-            <div><SearchBarComponent/></div>
+
             <div className={styles.Content}><Outlet/></div>
         </div>
     );

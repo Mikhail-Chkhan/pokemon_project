@@ -6,17 +6,17 @@ interface IProps {
     next: string | null;
     previous: string | null;
     count: number;
-    step: number;  // step теперь тип number для простоты вычислений
+    step: number; //позже попробовать использовать шаг пагинации
 }
 
 const PaginationComponent: FC<IProps> = ({ next, previous, count, step }) => {
     const [query, setQuery] = useSearchParams({ offset: '0', limit: step.toString() });
 
-    // Получаем текущее значение offset и вычисляем текущую страницу
+
     const currentOffset = Number(query.get('offset')) || 0;
     const currentPage = Math.floor(currentOffset / step) + 1;
 
-    // Вычисляем общее количество страниц
+
     const totalPage = Math.ceil(count / step);
 
     const [arrPaginator, setArrPaginator] = useState<string[]>([]);
@@ -26,7 +26,7 @@ const PaginationComponent: FC<IProps> = ({ next, previous, count, step }) => {
         createArrPages(currentPage, totalPage);
     }, [currentPage, totalPage]);
 
-    // Функция смены страниц (вперёд/назад)
+
     const changePage = (direction: 'next' | 'prev') => {
         let newOffset = currentOffset;
 
@@ -39,7 +39,7 @@ const PaginationComponent: FC<IProps> = ({ next, previous, count, step }) => {
         setQuery({ offset: newOffset.toString(), limit: step.toString() });
     };
 
-    // Функция создания массива страниц для пагинации
+
     const createArrPages = (currentPage: number, totalPage: number) => {
         const pages: string[] = [];
 
@@ -72,7 +72,7 @@ const PaginationComponent: FC<IProps> = ({ next, previous, count, step }) => {
         setArrPaginator(pages);
     };
 
-    // Функция смены страницы по номеру
+
     const goToPage = (page: number) => {
         const newOffset = (page - 1) * step;
         setQuery({ offset: newOffset.toString(), limit: step.toString() });

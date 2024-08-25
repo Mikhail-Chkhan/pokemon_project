@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import React from "react";
 import MainLayouts from "../layouts/mainLayouts/mainLayouts";
-import ALlPokemonPage from "../pages/AllPokemonPage";
+import ALlPokemonPage from "../pages/AllPokemonPage/AllPokemonPage";
 import SinglePokemonPage from "../pages/SinglePokemonPage";
 
 export const router = createBrowserRouter([

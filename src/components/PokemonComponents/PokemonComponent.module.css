@@ -37,3 +37,9 @@ background-color: #ff9c67;
     color: white;
     font-size: 30px;
 }
+.divLoading {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

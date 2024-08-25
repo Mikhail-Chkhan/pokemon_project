@@ -1,62 +1,71 @@
-import React, {useEffect, useState} from 'react';
-import {pokemonService} from "../../services/pokemon.api.service";
+import React, {useEffect} from 'react';
 import {Link, useSearchParams} from "react-router-dom";
 import {urls} from "../../constants/urls";
-import PaginationComponent from "../PaginationComponents/PaginationComponent";
-import ResponseModelAllPokemon from "../../modeles/ResponseModelAllPokemon";
-import styles from "./PokemonComponent.module.css"
+import styles from "./PokemonComponent.module.css";
+import {useAppDispatch, useAppSelector} from "../../redux/store";
+import {pokemonAction} from "../../redux/slices/pokemonSlice";
+import {Oval} from "react-loader-spinner";
+import IPokemonResult from "../../modeles/IPokemonResult";
 
 const PokemonComponent = () => {
-    const [data, setData] = useState<ResponseModelAllPokemon>(
-        {
-            count: 0,
-            next: "",
-            previous: "",
-            results: []
-        }
-    );
-    let [query] = useSearchParams()
+    let [query] = useSearchParams();
+    let dispatch = useAppDispatch();
+    let {loading, allPokemon, error} = useAppSelector(state => state.pokemonStore);
+    const pokemonStore = useAppSelector(state => state.searchPokemonStore);
+
+    let pokemonArr: IPokemonResult[] = [];
 
     useEffect(() => {
-        pokemonService.getAllPokemon(query).then(response => {
-            const rez = response.data;
-            console.log(rez);
-            setData(rez);
-        });
-    }, [data.next, query]);
+        dispatch(pokemonAction.getAllPokemon(query));
+        console.log(query);
+    }, [query]);
+
+    if (pokemonStore.isEnableSearch) {
+        pokemonArr = pokemonStore.pokemonArr;
+    } else {
+        pokemonArr = allPokemon.results;
+    }
 
     const extractPokemonId = (url: string) => {
         const urlParts = url.split('/');
-        console.log(urlParts)
         return urlParts[urlParts.length - 2];
     };
 
     return (
-
-            <div className={styles.contentBox}>
-                {data.results.map((pokemon) => (
-                    <div className={styles.divCard}
-                         key={pokemon.url}>
+        <div className={styles.contentBox}>
+            {error ? (
+                <h2>{error}</h2>
+            ) : !loading ? (
+                pokemonArr.map((pokemon) => (
+                    <div className={styles.divCard} key={pokemon.url}>
                         <Link
                             className={styles.pokemonLink}
-                            to={`/pokemon/${extractPokemonId(pokemon.url)}`}>
-
+                            to={`/pokemon/${extractPokemonId(pokemon.url)}`}
+                        >
                             <img
                                 className={styles.mainImg}
                                 src={`${urls.imageUrl.mainImgById(extractPokemonId(pokemon.url))}`}
                                 alt={pokemon.name}
                                 onError={(e) => {
-                                    e.currentTarget.src = `${urls.imageUrl.secondImgById(extractPokemonId(pokemon.url))}`
+                                    e.currentTarget.src = '/pokeball-pokemon.svg';
                                 }}
                             />
-
                         </Link>
                         <h3>{pokemon.name}</h3>
                     </div>
-                ))}
-                <PaginationComponent next={data.next} previous={data.previous} count={data.count} step={20}/>
-            </div>
-
+                ))
+            ) : (
+                <div className={styles.divLoading}>
+                    <Oval
+                        height="150"
+                        width="150"
+                        color="orange"
+                        ariaLabel="loading"
+                        secondaryColor="white"
+                    />
+                </div>
+            )}
+        </div>
     );
 };
 

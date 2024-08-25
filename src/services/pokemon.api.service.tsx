@@ -1,4 +1,4 @@
-import ResponseModelAllPokemon from "../modeles/ResponseModelAllPokemon";
+import ResponseModelDefault from "../modeles/ResponseModelDefault";
 import {baseUrl, urls} from "../constants/urls";
 import axios, {AxiosResponse} from "axios";
 import IPokemon from "../modeles/IPokemon";
@@ -14,10 +14,10 @@ interface IParams {
 }
 
 export const pokemonService = {
-    getAllPokemon: async (params?: URLSearchParams): Promise<AxiosResponse<ResponseModelAllPokemon>> => {
+    getAllPokemon: async (params?: URLSearchParams): Promise<AxiosResponse<ResponseModelDefault>> => {
         const url = urls.pokemonUrl.all;
-        const response: AxiosResponse<ResponseModelAllPokemon> = await axiosInstance.get(url,{params:params})
-        console.log(response)
+        const response: AxiosResponse<ResponseModelDefault> = await axiosInstance.get(url,{params:params})
+        // console.log(response)
         return response
     },
     getById: async (id:string):Promise<AxiosResponse<IPokemon>> => {
