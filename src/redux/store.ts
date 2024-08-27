@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {pokemonSlice} from "./slices/pokemonSlice";
 import {searchPokemonSlice} from "./slices/searchPokemonSlice";
 import {typeSlice} from "./slices/typeSlice";
+import {abilitySlice} from "./slices/abilitySlice";
 
 
 
@@ -12,6 +13,7 @@ export const store = configureStore({
         pokemonStore: pokemonSlice.reducer,
         searchPokemonStore: searchPokemonSlice.reducer,
         typeStore: typeSlice.reducer,
+        abilityStore: abilitySlice.reducer,
 
     }
 });

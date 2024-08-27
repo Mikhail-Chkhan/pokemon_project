@@ -12,19 +12,14 @@ interface IProps {
 const PaginationComponent: FC<IProps> = ({ next, previous, count, step }) => {
     const [query, setQuery] = useSearchParams({ offset: '0', limit: step.toString() });
 
-
     const currentOffset = Number(query.get('offset')) || 0;
     const currentPage = Math.floor(currentOffset / step) + 1;
-
-
     const totalPage = Math.ceil(count / step);
-
     const [arrPaginator, setArrPaginator] = useState<string[]>([]);
 
     useEffect(() => {
-        // Обновляем массив страниц при изменении текущей страницы или общего количества страниц
         createArrPages(currentPage, totalPage);
-    }, [currentPage, totalPage]);
+    }, [query,currentPage, totalPage]);
 
 
     const changePage = (direction: 'next' | 'prev') => {
@@ -35,7 +30,6 @@ const PaginationComponent: FC<IProps> = ({ next, previous, count, step }) => {
         } else if (direction === 'prev' && previous) {
             newOffset = Math.max(currentOffset - step, 0);
         }
-
         setQuery({ offset: newOffset.toString(), limit: step.toString() });
     };
 
@@ -44,12 +38,10 @@ const PaginationComponent: FC<IProps> = ({ next, previous, count, step }) => {
         const pages: string[] = [];
 
         if (totalPage <= 7) {
-            // Если страниц мало, показываем все
             for (let i = 1; i <= totalPage; i++) {
                 pages.push(i.toString());
             }
         } else {
-            // Логика показа страниц при большом количестве страниц
             if (currentPage <= 4) {
                 for (let i = 1; i <= 5; i++) pages.push(i.toString());
                 pages.push('...');

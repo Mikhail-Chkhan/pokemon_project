@@ -17,7 +17,6 @@ const PokemonComponent = () => {
 
     useEffect(() => {
         dispatch(pokemonAction.getAllPokemon(query));
-        console.log(query);
     }, [query]);
 
     if (pokemonStore.isEnableSearch) {
@@ -44,7 +43,7 @@ const PokemonComponent = () => {
                         >
                             <img
                                 className={styles.mainImg}
-                                src={`${urls.imageUrl.mainImgById(extractPokemonId(pokemon.url))}`}
+                                src={`${urls.imageUrl.mainImgById(extractPokemonId(pokemon.url))}` || `${urls.imageUrl.secondImgById(extractPokemonId(pokemon.url))}` || '/pokeball-pokemon.svg'}
                                 alt={pokemon.name}
                                 onError={(e) => {
                                     e.currentTarget.src = '/pokeball-pokemon.svg';

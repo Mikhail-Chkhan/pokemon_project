@@ -1,0 +1,52 @@
+.inputBox {
+    /*border: solid #f5451d 2px;*/
+    height: 26px;
+    width: 400px;
+    border-radius: 3px;
+    margin: 5px;
+    border: solid white 1px;
+    /*color: #ff9c67;*/
+    /*font-size: 20px;*/
+
+}
+.dropDown {
+    /*border: solid #f5451d 2px;*/
+    height: 28px;
+    border-radius: 3px;
+    margin: 5px;
+    border: solid white 1px;
+
+    /*color: #ff9c67;*/
+    /*background-size: 200px;*/
+}
+/*.searchButton {*/
+/*    !*border: solid #f5451d 2px;*!*/
+/*    height: 28px;*/
+/*    border-radius: 3px;*/
+/*    margin: 5px;*/
+/*    !*color: #ff9c67;;*!*/
+/*}*/
+.resetButton, .searchButton{
+    /*border: solid #f5451d 2px;*/
+    height: 28px;
+    border-radius: 3px;
+    border: solid white 2px;
+    margin: 5px 5px 5px 25px;
+
+    color: #333;
+    font-weight: bold;
+    cursor: pointer;
+}
+.resetButton:hover, .searchButton:hover{
+    border: solid #333 2px;
+}
+
+.headerDiv {
+    width: 85%;
+    height: 90%;
+    background-color: #ffcc00;
+    border-radius: 10px 10px 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

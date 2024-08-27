@@ -1,28 +1,32 @@
 .mainBox {
     width: 100vw;
-    height: 100vh;
-
-
+    height: 100%;
+    padding: 0;
+    margin: 0;
 }
-/*.searchBox {*/
-/*    width: 100vw;*/
-/*    height: 5vh;*/
 
-/*}*/
 .pokemonBox {
     width: 100vw;
-    height: 90vh;
+    height: 83vh;
     overflow: auto;
-    /*display: flex;*/
-    /*align-items: center;*/
-    /*justify-content: center;*/
+    padding: 0;
+    margin: 0;
+    display: flex;
 
+    justify-content: center;
 
 }
 .paginatorBox, .searchBox {
     width: 100vw;
-    height: 5vh;
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 0;
+    margin: 0;
+}
+.paginatorBox {
+    height: 5vh;
+}
+.searchBox {
+    height: 10vh;
 }

@@ -6,5 +6,11 @@ export default interface IType {
         {pokemon: IPokemonResult }
     ],
     name:string,
-    id:number
+    id:number,
+    damage_relations: {
+        double_damage_from: [{ name: string }];
+        double_damage_to: [{ name: string }];
+        half_damage_from: [{ name: string }];
+        half_damage_to: [{ name: string }];
+    };
 }

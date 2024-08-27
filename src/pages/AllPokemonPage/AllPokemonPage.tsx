@@ -1,13 +1,19 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import PokemonComponent from "../../components/PokemonComponents/PokemonComponent";
 import {useAppSelector} from "../../redux/store";
 import PaginationComponent from "../../components/PaginationComponents/PaginationComponent";
 import SearchBarComponent from "../../components/SearchBarComponents/SearchBarComponent";
 import styles from './AllPokemonPage.module.css'
+import {reset} from "../../helpers/resetHelper";
 
 const AllPokemonPage = () => {
     let {allPokemon} = useAppSelector(state => state.pokemonStore)
     const isEnableSearch = useAppSelector(state => state.searchPokemonStore.isEnableSearch);
+    const isInitialRender = useRef(true);
+    if (isInitialRender.current) {
+        isInitialRender.current = false;
+        reset()
+    }
     return (
         <div className={styles.mainBox}>
             <div className={styles.searchBox}><SearchBarComponent/></div>
